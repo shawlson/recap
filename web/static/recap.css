@@ -36,6 +36,34 @@ ol, ul {
     font-weight: bold;
 }
 
+.game {
+    text-align: center;
+}
+
+.game-header > span {
+    display: block;
+}
+
+.game-title::before {
+    content: open-quote;
+}
+
+.game-title::after {
+    content: close-quote;
+}
+
+.game-result {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 1rem;
+    box-shadow: 0.4rem 0.5rem;
+}
+
+.game-score {
+    font-size: 3rem;
+}
+
+/* Mobile-specific */
 @media screen and (max-width:674px) {
     .gamecard {
         border: 1px solid black;
@@ -48,8 +76,13 @@ ol, ul {
         text-align: center;
         columns: 2;
     }
+
+    .game-result {
+        margin-bottom: 1.3rem;
+    }
 }
 
+/* Desktop-specific */
 @media screen and (min-width:675px) {
     .index {
         display: grid;
@@ -85,38 +118,17 @@ ol, ul {
     #sidebar li {
         margin-bottom: 0.5rem;
     }
-}
 
-.game {
-    text-align: center;
-}
+    .game-result {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
 
-.game-header > span {
-    display: block;
-}
-
-.game-title::before {
-    content: open-quote;
-}
-
-.game-title::after {
-    content: close-quote;
-}
-
-.game-result {
-    display: inline-block;
-    margin-left: 2rem;
-    margin-right: 2rem;
-}
-
-.game-result.game-home {
-    text-align: right;
-}
-
-.game-result.game-away {
-    text-align: left;
-}
-
-.game-score {
-    font-size: 3rem;
+    .game-result.game-home {
+        text-align: right;
+    }
+    
+    .game-result.game-away {
+        text-align: left;
+    }
 }
