@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+    {{- with .Game -}}
+    Recap: {{ or .Title (printf "%s vs %s: %s" .Home.Nickname .Away.Nickname .Date) }}
+    {{- end -}}
+    </title>
+    <link rel="stylesheet" href="{{ .Breadcrumb.PathToRoot }}/static/recap.css">
+</head>
+<body>
+    <!-- Site header -->
+    {{- template "header.tmpl" .Breadcrumb -}}
+    <!-- Show the game info -->
+    {{- with .Game -}}
+    <div class="game">
+        <h1 class="game-header">
+            <span class="game-date">{{ DateLong .Date }}</span>
+            {{- if .Title -}}
+            <span class="game-title">{{ .Title }}</span>
+            {{- end -}}
+            {{- if .Venue -}}
+            <span class="game-venue">{{ .Venue }}</span>
+            {{- end -}}
+        </h1>
+        <div class="game-result game-home">
+            <h2 class="game-team">{{ .Home.Represents }} {{ .Home.Nickname }}</h2>
+            <span class="game-score">{{ .HomeScore }}</span>
+        </div>
+        <div class="game-result game-away">
+            <h2 class="game-team">{{ .Away.Represents }} {{ .Away.Nickname }}</h2>
+            <span class="game-score">{{ .AwayScore }}</span>
+        </div>
+    </div>
+    {{- end -}}
+    <!-- Show the game links -->
+    <h1 class="game-links">Links</h1>
+    {{- if .Resources -}}
+    <ul>
+        {{- range .Resources -}}
+        <li><a href="{{ .URL }}">{{ .Title }}</a></li>
+        {{- end -}}
+    </ul>
+    {{- else -}}
+    No links found
+    {{- end -}}
+</body>
+</html>

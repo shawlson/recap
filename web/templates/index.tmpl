@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Recap: {{ .Title }}</title>
+    <link rel="stylesheet" href="{{ .Breadcrumb.PathToRoot }}/static/recap.css">
+</head>
+<body>
+    <!-- Site header -->
+    {{- template "header.tmpl" .Breadcrumb -}}
+    <!-- Title (and subtitle) - whose index page are we looking at? -->
+    <h1>{{ .Title }}{{- if .Subtitle -}}: {{ .Subtitle }}{{- end -}}</h1>
+    <div class="index">
+        <main>
+            {{- if .Games  -}}
+            <ol class="gamecardlist">
+                {{- range .Games -}}
+                <li>
+                    <div class="gamecard">
+                        <span class="gamecard-line gamecard-date">{{ DateShort .Date }}</span>
+                        <span class="gamecard-line gamecard-billing"><a href="{{ $.Breadcrumb.PathToRoot }}{{ GamePath . }}">{{ .Home.Represents }} {{ .Home.Nickname }} vs. {{ .Away.Represents }} {{ .Away.Nickname }}</a></span>
+                        {{- if .Title -}}
+                        <span class="gamecard-line gamecard-title">{{ .Title }}</span>
+                        {{- end -}}
+                        {{- if .Venue -}}
+                        <span class="gamecard-line gamecard-venue">{{ .Venue }}</span>
+                        {{- end -}}
+                        <span class="gamecard-line gamecard-score">{{ .Home.Nickname }} {{ .HomeScore }} - {{ .Away.Nickname }} {{ .AwayScore }}</span>
+                    </div>
+                </li>
+                {{- end -}}
+            </ol>
+            {{- else -}}
+            No games found
+            {{- end -}}
+        </main>
+        <!-- Each index page - site, league, or club - has its own sidebar template defined -->
+        {{- block "sidebar" . -}}
+        <div id="sidebar">
+            <a href="{{ .Breadcrumb.PathToRoot }}/index.html">home</a>
+        </div>
+        {{- end -}}
+    </div>
+</body>
+</html>

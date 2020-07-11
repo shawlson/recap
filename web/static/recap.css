@@ -1,0 +1,99 @@
+body {
+    margin: 1rem;
+    font-family: monospace;
+}
+
+a {
+    font-weight: bold;
+}
+
+ol, ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#breadcrumb {
+    display: flex;
+}
+
+#breadcrumb > li:not(:last-child)::after {
+    content: ">";
+    display: inline-block;
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+}
+
+.index {
+    display: grid;
+    grid-template-areas: "sidebar main";
+    grid-template-columns: auto 1fr;
+    column-gap: 1rem;
+}
+
+.index > main {
+    grid-area: main;
+}
+
+#sidebar {
+    padding-right: 1rem;
+    border-right: 1px dashed darkturquoise;
+    line-height: 1.2rem;
+}
+
+.gamecardlist > li {
+    margin-bottom: 1.5rem;
+}
+
+.gamecard {
+    display: inline-grid;
+    grid-template-rows: auto auto;
+    column-gap: 2rem;
+}
+
+.gamecard-line {
+    display: block;
+    grid-column: 2 / 3;
+}
+
+.gamecard-date {
+    grid-column: 1 / 2;
+}
+
+.gamecard-title {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.game {
+    text-align: center;
+}
+
+.game-header > span{
+    display: block;
+}
+
+.game-title::before {
+    content: open-quote;
+}
+
+.game-title::after {
+    content: close-quote;
+}
+
+.game-result {
+    display: inline-block;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.game-result.game-home {
+    text-align: right;
+}
+
+.game-result.game-away {
+    text-align: left;
+}
+
+.game-score {
+    font-size: 3rem;
+}

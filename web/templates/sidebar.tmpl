@@ -1,0 +1,14 @@
+{{`{{ define "sidebar" }}`}}
+<div id="sidebar">
+    {{- range .Sections -}}
+    <p>{{ .Header }}</p>
+    <nav>
+        <ol>
+        {{- range .Links -}}
+            <li><a href="{{ $.Breadcrumb.PathToRoot }}{{ .HREF }}">{{ .Display }}</a></li>
+        {{- end -}}
+        </ol>
+    </nav>
+    {{- end -}}
+</div>
+{{`{{ end }}`}}

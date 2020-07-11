@@ -1,0 +1,13 @@
+<header>
+    <nav>
+        <ul id="breadcrumb">
+            <li><a href="{{ .PathToRoot }}/index.html">home</a></li>
+            {{- if .League.HREF -}}
+            <li><a href="{{ .PathToRoot }}{{ .League.HREF }}">{{ .League.Display }}</a></li>
+            {{- end -}}
+            {{- if and .Home.HREF .Away.HREF -}}
+            <li><a href="{{ .PathToRoot }}{{ .Home.HREF }}">{{ .Home.Display }}</a> / <a href="{{ .PathToRoot }}{{ .Away.HREF }}">{{ .Away.Display }}</a></li>
+            {{- end -}}
+        </ul>
+    </nav>
+</header>
