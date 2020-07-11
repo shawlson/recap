@@ -23,40 +23,12 @@ ol, ul {
     margin-right: 0.6rem;
 }
 
-.index {
-    display: grid;
-    grid-template-areas: "sidebar main";
-    grid-template-columns: auto 1fr;
-    column-gap: 1rem;
-}
-
-.index > main {
-    grid-area: main;
-}
-
-#sidebar {
-    padding-right: 1rem;
-    border-right: 1px dashed darkturquoise;
-    line-height: 1.2rem;
-}
-
-.gamecardlist > li {
+.gamecardlist li, #sidebar li {
     margin-bottom: 1.5rem;
-}
-
-.gamecard {
-    display: inline-grid;
-    grid-template-rows: auto auto;
-    column-gap: 2rem;
 }
 
 .gamecard-line {
     display: block;
-    grid-column: 2 / 3;
-}
-
-.gamecard-date {
-    grid-column: 1 / 2;
 }
 
 .gamecard-title {
@@ -64,11 +36,62 @@ ol, ul {
     font-weight: bold;
 }
 
+@media screen and (max-width:674px) {
+    .gamecard {
+        border: 1px solid black;
+        padding: 1rem;
+        box-shadow: 0.4rem 0.5rem darkturquoise;
+        min-height: 4rem;
+    }
+
+    #sidebar ol {
+        text-align: center;
+        columns: 2;
+    }
+}
+
+@media screen and (min-width:675px) {
+    .index {
+        display: grid;
+        grid-template-areas: "sidebar main";
+        grid-template-columns: auto 1fr;
+        column-gap: 1rem;
+    }
+    
+    .index > main {
+        grid-area: main;
+    }
+
+    .gamecard {
+        display: inline-grid;
+        grid-template-rows: auto auto;
+        column-gap: 2rem;
+    }
+
+    .gamecard-line {
+        display: block;
+        grid-column: 2 / 3;
+    }
+
+    .gamecard-date {
+        grid-column: 1 / 2;
+    }
+
+    #sidebar {
+        padding-right: 1rem;
+        border-right: 1px solid darkturquoise;
+    }
+
+    #sidebar li {
+        margin-bottom: 0.5rem;
+    }
+}
+
 .game {
     text-align: center;
 }
 
-.game-header > span{
+.game-header > span {
     display: block;
 }
 
