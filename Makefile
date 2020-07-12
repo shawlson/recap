@@ -27,8 +27,11 @@ STATIC_ASSETS_GZ   = $(DIST_STATIC_DIR)/recap.css.gz
 
 all: $(BINARIES) $(TEMPLATES) $(STATIC_ASSETS_GZ)
 
-.PHONY: db install clean
+.PHONY: deps db install clean
 
+deps:
+	go get
+	go get ./minifier
 db:
 	$(PSQL) -v ON_ERROR_STOP=1 -f sql/database.sql $(RECAP_DB) && \
 	$(PSQL) -v ON_ERROR_STOP=1 -f sql/seed.sql $(RECAP_DB)
@@ -43,7 +46,7 @@ $(DIST_BIN_DIR):
 	mkdir -p $(DIST_BIN_DIR)
 
 $(DIST_BIN_DIR)/recap: $(SRC_FILES)
-	go get && go build -o $(DIST_BIN_DIR)/recap
+	go build -o $(DIST_BIN_DIR)/recap
 
 $(TEMPLATES): $(DIST_TEMPLATES_DIR)
 
@@ -51,19 +54,15 @@ $(DIST_TEMPLATES_DIR):
 	mkdir -p $(DIST_TEMPLATES_DIR)
 
 $(DIST_TEMPLATES_DIR)/header.tmpl: $(SRC_TEMPLATES_DIR)/header.tmpl
-	go get ./minifier && \
 	<$(SRC_TEMPLATES_DIR)/header.tmpl go run ./minifier -type=html > $@
 
 $(DIST_TEMPLATES_DIR)/sidebar.tmpl: $(SRC_TEMPLATES_DIR)/sidebar.tmpl
-	go get ./minifier && \
 	<$(SRC_TEMPLATES_DIR)/sidebar.tmpl go run ./minifier -type=html > $@
 
 $(DIST_TEMPLATES_DIR)/index.tmpl: $(SRC_TEMPLATES_DIR)/index.tmpl
-	go get ./minifier && \
 	<$(SRC_TEMPLATES_DIR)/index.tmpl go run ./minifier -type=html > $@
 
 $(DIST_TEMPLATES_DIR)/game.tmpl: $(SRC_TEMPLATES_DIR)/game.tmpl
-	go get ./minifier && \
 	<$(SRC_TEMPLATES_DIR)/game.tmpl go run ./minifier -type=html > $@
 
 $(STATIC_ASSETS_GZ): $(STATIC_ASSETS)
@@ -74,7 +73,6 @@ $(DIST_STATIC_DIR):
 	mkdir -p $(DIST_STATIC_DIR)
 
 $(DIST_STATIC_DIR)/recap.css: $(SRC_STATIC_DIR)/recap.css
-	go get ./minifier && \
 	<$(SRC_STATIC_DIR)/recap.css go run ./minifier -type=css > $@
 
 $(DIST_STATIC_DIR)/recap.css.gz: $(DIST_STATIC_DIR)/recap.css
