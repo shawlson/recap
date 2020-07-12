@@ -1,4 +1,5 @@
 PSQL               = /usr/local/pgsql/bin/psql
+MKDIR              = /bin/mkdir -p
 
 RECAP_DB          ?= recap
 RECAP_DIR         ?= $(HOME)/recap
@@ -39,40 +40,32 @@ install: all
 clean:
 	rm -rf $(DIST)
 
-$(BINARIES): $(DIST_BIN_DIR)
-
-$(DIST_BIN_DIR):
-	mkdir -p $(DIST_BIN_DIR)
-
 $(DIST_BIN_DIR)/recap: $(SRC_FILES)
+	@$(MKDIR) $(DIST_BIN_DIR)
 	go build -o $(DIST_BIN_DIR)/recap
 
-$(TEMPLATES): $(DIST_TEMPLATES_DIR)
-
-$(DIST_TEMPLATES_DIR):
-	mkdir -p $(DIST_TEMPLATES_DIR)
-
 $(DIST_TEMPLATES_DIR)/header.tmpl: $(SRC_TEMPLATES_DIR)/header.tmpl
+	@$(MKDIR) $(DIST_TEMPLATES_DIR)
 	<$(SRC_TEMPLATES_DIR)/header.tmpl go run ./minifier -type=html > $@
 
 $(DIST_TEMPLATES_DIR)/sidebar.tmpl: $(SRC_TEMPLATES_DIR)/sidebar.tmpl
+	@$(MKDIR) $(DIST_TEMPLATES_DIR)
 	<$(SRC_TEMPLATES_DIR)/sidebar.tmpl go run ./minifier -type=html > $@
 
 $(DIST_TEMPLATES_DIR)/index.tmpl: $(SRC_TEMPLATES_DIR)/index.tmpl
+	@$(MKDIR) $(DIST_TEMPLATES_DIR)
 	<$(SRC_TEMPLATES_DIR)/index.tmpl go run ./minifier -type=html > $@
 
 $(DIST_TEMPLATES_DIR)/game.tmpl: $(SRC_TEMPLATES_DIR)/game.tmpl
+	@$(MKDIR) $(DIST_TEMPLATES_DIR)
 	<$(SRC_TEMPLATES_DIR)/game.tmpl go run ./minifier -type=html > $@
 
 $(STATIC_ASSETS_GZ): $(STATIC_ASSETS)
 
-$(STATIC_ASSETS): $(DIST_STATIC_DIR)
-
-$(DIST_STATIC_DIR):
-	mkdir -p $(DIST_STATIC_DIR)
-
 $(DIST_STATIC_DIR)/recap.css: $(SRC_STATIC_DIR)/recap.css
+	@$(MKDIR) $(DIST_STATIC_DIR)
 	<$(SRC_STATIC_DIR)/recap.css go run ./minifier -type=css > $@
 
 $(DIST_STATIC_DIR)/recap.css.gz: $(DIST_STATIC_DIR)/recap.css
+	@$(MKDIR) $(DIST_STATIC_DIR)
 	gzip -k -9 $(DIST_STATIC_DIR)/recap.css
