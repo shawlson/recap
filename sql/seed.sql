@@ -1,78 +1,141 @@
 begin;
 
-insert into sport values(1, 'Basketball') on conflict do nothing;
-insert into sport values(2, 'Football') on conflict do nothing;
+insert into sport values (1, 'Basketball'), (2, 'Football') on conflict do nothing;
 
-insert into league values('NBA', 'NBA', 1) on conflict do nothing;
-insert into league values('NFL', 'NFL', 2) on conflict do nothing;
+insert into league values('NBA', 'NBA', 1), ('NFL', 'NFL', 2) on conflict do nothing;
 
-insert into club values(1,1,'Atlanta','Hawks') on conflict do nothing;
-insert into club values(2,1,'Boston','Celtics') on conflict do nothing;
-insert into club values(3,1,'New Jersey','Nets') on conflict do nothing;
-insert into club values(3,2,'Brooklyn','Nets') on conflict do nothing;
-insert into club values(4,1,'Charlotte','Bobcats') on conflict do nothing;
-insert into club values(4,2,'Charlotte','Hornets') on conflict do nothing;
-insert into club values(5,1,'Chicago','Bulls') on conflict do nothing;
-insert into club values(6,1,'Cleveland','Cavaliers') on conflict do nothing;
-insert into club values(7,1,'Dallas','Mavericks') on conflict do nothing;
-insert into club values(8,1,'Denver','Nuggets') on conflict do nothing;
-insert into club values(9,1,'Detroit','Pistons') on conflict do nothing;
-insert into club values(10,1,'Golden State','Warriors') on conflict do nothing;
-insert into club values(11,1,'Houston','Rockets') on conflict do nothing;
-insert into club values(12,1,'Indiana','Pacers') on conflict do nothing;
-insert into club values(13,1,'Los Angeles','Clippers') on conflict do nothing;
-insert into club values(14,1,'Los Angeles','Lakers') on conflict do nothing;
-insert into club values(15,1,'Memphis','Grizzlies') on conflict do nothing;
-insert into club values(16,1,'Miami','Heat') on conflict do nothing;
-insert into club values(17,1,'Milwaukee','Bucks') on conflict do nothing;
-insert into club values(18,1,'Minnesota','Timberwolves') on conflict do nothing;
-insert into club values(19,1,'New Orleans','Hornets') on conflict do nothing;
-insert into club values(19,2,'New Orleans','Pelicans') on conflict do nothing;
-insert into club values(20,1,'New York','Knicks') on conflict do nothing;
-insert into club values(21,1,'Oklahoma City','Thunder') on conflict do nothing;
-insert into club values(22,1,'Orlando','Magic') on conflict do nothing;
-insert into club values(23,1,'Philadelphia','76ers') on conflict do nothing;
-insert into club values(24,1,'Phoenix','Suns') on conflict do nothing;
-insert into club values(25,1,'Portland','Trail Blazers') on conflict do nothing;
-insert into club values(26,1,'Sacramento','Kings') on conflict do nothing;
-insert into club values(27,1,'San Antonio','Spurs') on conflict do nothing;
-insert into club values(28,1,'Toronto','Raptors') on conflict do nothing;
-insert into club values(29,1,'Utah','Jazz') on conflict do nothing;
-insert into club values(30,1,'Washington','Wizards') on conflict do nothing;
-insert into club values(31,1,'Arizona','Cardinals') on conflict do nothing;
-insert into club values(32,1,'Atlanta','Falcons') on conflict do nothing;
-insert into club values(33,1,'Baltimore','Ravens') on conflict do nothing;
-insert into club values(34,1,'Buffalo','Bills') on conflict do nothing;
-insert into club values(35,1,'Carolina','Panthers') on conflict do nothing;
-insert into club values(36,1,'Chicago','Bears') on conflict do nothing;
-insert into club values(37,1,'Cincinnati','Bengals') on conflict do nothing;
-insert into club values(38,1,'Cleveland','Browns') on conflict do nothing;
-insert into club values(39,1,'Dallas','Cowboys') on conflict do nothing;
-insert into club values(40,1,'Denver','Broncos') on conflict do nothing;
-insert into club values(41,1,'Detroit','Lions') on conflict do nothing;
-insert into club values(42,1,'Green Bay','Packers') on conflict do nothing;
-insert into club values(43,1,'Houston','Texans') on conflict do nothing;
-insert into club values(44,1,'Indianapolis','Colts') on conflict do nothing;
-insert into club values(45,1,'Jacksonville','Jaguars') on conflict do nothing;
-insert into club values(46,1,'Kansas City','Chiefs') on conflict do nothing;
-insert into club values(47,1,'Oakland','Raiders') on conflict do nothing;
-insert into club values(47,2,'Las Vegas','Raiders') on conflict do nothing;
-insert into club values(48,1,'San Diego','Chargers') on conflict do nothing;
-insert into club values(48,2,'Los Angeles','Chargers') on conflict do nothing;
-insert into club values(49,2,'Los Angeles','Rams') on conflict do nothing;
-insert into club values(49,1,'St. Louis','Rams') on conflict do nothing;
-insert into club values(50,1,'Miami','Dolphins') on conflict do nothing;
-insert into club values(51,1,'Minnesota','Vikings') on conflict do nothing;
-insert into club values(52,1,'New England','Patriots') on conflict do nothing;
-insert into club values(53,1,'New Orleans','Saints') on conflict do nothing;
-insert into club values(54,1,'New York','Giants') on conflict do nothing;
-insert into club values(55,1,'New York','Jets') on conflict do nothing;
-insert into club values(56,1,'Philadelphia','Eagles') on conflict do nothing;
-insert into club values(57,1,'Pittsburgh','Steelers') on conflict do nothing;
-insert into club values(58,1,'San Francisco','49ers') on conflict do nothing;
-insert into club values(59,1,'Seattle','Seahawks') on conflict do nothing;
-insert into club values(60,1,'Tampa Bay','Buccaneers') on conflict do nothing;
-insert into club values(61,1,'Tennessee','Titans') on conflict do nothing;
-insert into club values(62,1,'Washington','Redskins') on conflict do nothing;
+insert into club values(1,1,'Atlanta','Hawks'),
+                       (2,1,'Boston','Celtics'),
+                       (3,1,'New Jersey','Nets'),
+                       (3,2,'Brooklyn','Nets'),
+                       (4,1,'Charlotte','Bobcats'),
+                       (4,2,'Charlotte','Hornets'),
+                       (5,1,'Chicago','Bulls'),
+                       (6,1,'Cleveland','Cavaliers'),
+                       (7,1,'Dallas','Mavericks'),
+                       (8,1,'Denver','Nuggets'),
+                       (9,1,'Detroit','Pistons'),
+                       (10,1,'Golden State','Warriors'),
+                       (11,1,'Houston','Rockets'),
+                       (12,1,'Indiana','Pacers'),
+                       (13,1,'Los Angeles','Clippers'),
+                       (14,1,'Los Angeles','Lakers'),
+                       (15,1,'Memphis','Grizzlies'),
+                       (16,1,'Miami','Heat'),
+                       (17,1,'Milwaukee','Bucks'),
+                       (18,1,'Minnesota','Timberwolves'),
+                       (19,1,'New Orleans','Hornets'),
+                       (19,2,'New Orleans','Pelicans'),
+                       (20,1,'New York','Knicks'),
+                       (21,1,'Oklahoma City','Thunder'),
+                       (22,1,'Orlando','Magic'),
+                       (23,1,'Philadelphia','76ers'),
+                       (24,1,'Phoenix','Suns'),
+                       (25,1,'Portland','Trail Blazers'),
+                       (26,1,'Sacramento','Kings'),
+                       (27,1,'San Antonio','Spurs'),
+                       (28,1,'Toronto','Raptors'),
+                       (29,1,'Utah','Jazz'),
+                       (30,1,'Washington','Wizards'),
+                       (31,1,'Arizona','Cardinals'),
+                       (32,1,'Atlanta','Falcons'),
+                       (33,1,'Baltimore','Ravens'),
+                       (34,1,'Buffalo','Bills'),
+                       (35,1,'Carolina','Panthers'),
+                       (36,1,'Chicago','Bears'),
+                       (37,1,'Cincinnati','Bengals'),
+                       (38,1,'Cleveland','Browns'),
+                       (39,1,'Dallas','Cowboys'),
+                       (40,1,'Denver','Broncos'),
+                       (41,1,'Detroit','Lions'),
+                       (42,1,'Green Bay','Packers'),
+                       (43,1,'Houston','Texans'),
+                       (44,1,'Indianapolis','Colts'),
+                       (45,1,'Jacksonville','Jaguars'),
+                       (46,1,'Kansas City','Chiefs'),
+                       (47,1,'Oakland','Raiders'),
+                       (47,2,'Las Vegas','Raiders'),
+                       (48,1,'San Diego','Chargers'),
+                       (48,2,'Los Angeles','Chargers'),
+                       (49,2,'Los Angeles','Rams'),
+                       (49,1,'St. Louis','Rams'),
+                       (50,1,'Miami','Dolphins'),
+                       (51,1,'Minnesota','Vikings'),
+                       (52,1,'New England','Patriots'),
+                       (53,1,'New Orleans','Saints'),
+                       (54,1,'New York','Giants'),
+                       (55,1,'New York','Jets'),
+                       (56,1,'Philadelphia','Eagles'),
+                       (57,1,'Pittsburgh','Steelers'),
+                       (58,1,'San Francisco','49ers'),
+                       (59,1,'Seattle','Seahawks'),
+                       (60,1,'Tampa Bay','Buccaneers'),
+                       (61,1,'Tennessee','Titans'),
+                       (62,1,'Washington','Redskins')
+on conflict do nothing;
+
+delete from active_league_club where league_code in ('NBA', 'NFL');
+insert into active_league_club values(1,1,'NBA'),
+                                     (2,1,'NBA'),
+                                     (3,2,'NBA'),
+                                     (4,2,'NBA'),
+                                     (5,1,'NBA'),
+                                     (6,1,'NBA'),
+                                     (7,1,'NBA'),
+                                     (8,1,'NBA'),
+                                     (9,1,'NBA'),
+                                     (10,1,'NBA'),
+                                     (11,1,'NBA'),
+                                     (12,1,'NBA'),
+                                     (13,1,'NBA'),
+                                     (14,1,'NBA'),
+                                     (15,1,'NBA'),
+                                     (16,1,'NBA'),
+                                     (17,1,'NBA'),
+                                     (18,1,'NBA'),
+                                     (19,2,'NBA'),
+                                     (20,1,'NBA'),
+                                     (21,1,'NBA'),
+                                     (22,1,'NBA'),
+                                     (23,1,'NBA'),
+                                     (24,1,'NBA'),
+                                     (25,1,'NBA'),
+                                     (26,1,'NBA'),
+                                     (27,1,'NBA'),
+                                     (28,1,'NBA'),
+                                     (29,1,'NBA'),
+                                     (30,1,'NBA'),
+                                     (31,1,'NFL'),
+                                     (32,1,'NFL'),
+                                     (33,1,'NFL'),
+                                     (34,1,'NFL'),
+                                     (35,1,'NFL'),
+                                     (36,1,'NFL'),
+                                     (37,1,'NFL'),
+                                     (38,1,'NFL'),
+                                     (39,1,'NFL'),
+                                     (40,1,'NFL'),
+                                     (41,1,'NFL'),
+                                     (42,1,'NFL'),
+                                     (43,1,'NFL'),
+                                     (44,1,'NFL'),
+                                     (45,1,'NFL'),
+                                     (46,1,'NFL'),
+                                     (47,2,'NFL'),
+                                     (48,2,'NFL'),
+                                     (49,2,'NFL'),
+                                     (50,1,'NFL'),
+                                     (51,1,'NFL'),
+                                     (52,1,'NFL'),
+                                     (53,1,'NFL'),
+                                     (54,1,'NFL'),
+                                     (55,1,'NFL'),
+                                     (56,1,'NFL'),
+                                     (57,1,'NFL'),
+                                     (58,1,'NFL'),
+                                     (59,1,'NFL'),
+                                     (60,1,'NFL'),
+                                     (61,1,'NFL'),
+                                     (62,1,'NFL');
 
 commit;
