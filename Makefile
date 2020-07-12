@@ -25,10 +25,9 @@ DIST_STATIC_DIR    = $(DIST)/www/static
 STATIC_ASSETS      = $(DIST_STATIC_DIR)/recap.css
 STATIC_ASSETS_GZ   = $(DIST_STATIC_DIR)/recap.css.gz
 
+.PHONY: all deps db install clean
+
 all: $(BINARIES) $(TEMPLATES) $(STATIC_ASSETS_GZ)
-
-.PHONY: deps db install clean
-
 deps:
 	go get
 	go get ./minifier
