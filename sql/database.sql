@@ -21,8 +21,6 @@ create table if not exists season (
     exhibition boolean not null default false,
     unique(season_id),
     unique(league_code, start_year, season_type),
-    check (season_type in ('Season', 'Pre-Season', 'Summer League')),
-    check ((exhibition = false) = (season_type = 'Season')),
     primary key(season_id, league_code),
     foreign key(league_code) references league
 );
