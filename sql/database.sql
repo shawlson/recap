@@ -56,7 +56,8 @@ create table if not exists season_club (
     club_id int,
     club_iteration int not null,
     primary key(season_id, league_code, club_id),
-    foreign key(season_id, league_code) references season,
+    foreign key(season_id, league_code) references season
+    on delete cascade,
     foreign key(club_id, club_iteration) references club
     on update cascade
 );
