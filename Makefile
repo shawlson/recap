@@ -12,7 +12,7 @@ SRC_FILES          = recap.go \
                      internal/models.go \
                      internal/store.go
 DIST_BIN_DIR       = $(DIST)/bin
-BINARIES           = $(DIST_BIN_DIR)/recap
+BINARIES           = $(DIST_BIN_DIR)/recap $(DIST_BIN_DIR)/new_season.sh
 
 SRC_TEMPLATES_DIR  = web/templates
 DIST_TEMPLATES_DIR = $(DIST)/templates
@@ -42,7 +42,12 @@ clean:
 
 $(DIST_BIN_DIR)/recap: $(SRC_FILES)
 	@$(MKDIR) $(DIST_BIN_DIR)
-	go build -o $(DIST_BIN_DIR)/recap
+	go build -o $@
+
+$(DIST_BIN_DIR)/new_season.sh: sql/scripts/new_season.sh
+	@$(MKDIR) $(DIST_BIN_DIR)
+	cp sql/scripts/new_season.sh $@
+	chmod +x $@
 
 $(DIST_TEMPLATES_DIR)/header.tmpl: $(SRC_TEMPLATES_DIR)/header.tmpl
 	@$(MKDIR) $(DIST_TEMPLATES_DIR)

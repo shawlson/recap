@@ -142,6 +142,31 @@ begin
 end;
 $$ language plpgsql;
 
+create or replace
+function new_season(league varchar(8), start_year int, description text,
+                    exhibition boolean, active boolean)
+returns void as $$
+declare
+    new_season_id int;
+begin
+    insert into season(league_code, start_year, season_type, exhibition)
+    values (league, start_year, description, exhibition)
+    returning season_id into new_season_id;
+
+    if active = true then
+        insert into active_league_season(league_code, season_id)
+        values (league, new_season_id)
+        on conflict (league_code) do update
+        set season_id = excluded.season_id;
+    end if;
+
+    insert into season_club(season_id, league_code, club_id, club_iteration)
+    select new_season_id, league, club_id, club_iteration
+    from active_league_club
+    where league_code = league;
+end;
+$$ language plpgsql;
+
 create or replace view game_view as 
 select
     sport.sport_name, league.league_code, league.league_name,
