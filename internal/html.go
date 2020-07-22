@@ -193,7 +193,7 @@ func (doc document) clubSidebar(club Club, seasons []Season) error {
 		for i, season := range exhibition {
 			section.Links[i] = link{
 				clubPath(club, season),
-				fmt.Sprintf("%d %s Season", season.League.Name, season.Year),
+				fmt.Sprintf("%d %s %s", season.Year, season.League.Name, season.Type),
 			}
 		}
 
